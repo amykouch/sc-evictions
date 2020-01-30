@@ -1,0 +1,37 @@
+---
+title: "EDA of SC Evictions Data"
+author: "Amy Kouch"
+date: "`r Sys.Date()`"
+output: 
+  github_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Libraries
+library(tidyverse)
+
+# Parameters
+
+evictions <- 
+  here::here("data/evictions.rds")
+
+#===============================================================================
+
+# Reading in evictions data
+
+evictions <- 
+  evictions %>%
+  read_rds() 
+
+# Identifying SC city with most evictions
+evictions %>%
+  arrange(desc(evictions)) %>%
+  top_n(1, wt = evictions)
+
+```
+
