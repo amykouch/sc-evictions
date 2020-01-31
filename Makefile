@@ -1,23 +1,22 @@
 # Search path
-VPATH =
+VPATH = data data-raw eda reports scripts
 
 # Processed data files
-DATA =
+DATA = evictions.rds boundaries.rds evictions_boundaries.rds
 
 # EDA studies
-EDA =
-
-# Reports
-REPORTS =
+EDA = evictions_boundaries.md evictions_boundaries.Rmd
 
 # All targets
-all : $(DATA) $(EDA) $(REPORTS)
+all : $(DATA) $(EDA)
 
 # Data dependencies
 
+evictions_boundaries.rds : evictions.rds boundaries.rds
 
 # EDA study and report dependencies
 
+evictions_boundaries.md : evictions.rds boundaries.rds evictions_boundaries.rds
 
 # Pattern rules
 %.rds : %.R
